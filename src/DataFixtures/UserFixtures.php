@@ -36,6 +36,16 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
             $manager->persist($user);
         }
 
+        $user = (new User())
+            ->setFirstName('Tony')
+            ->setLastName('Stark')
+            ->setGuestNumber(1)
+            ->setEmail('tony@stark.com')
+            ->setCreatedAt(new DateTimeImmutable());
+
+        $user->setPassword($this->passwordHasher->hashPassword($user, 'azerty@11'));
+
+        $manager->persist($user);
         $manager->flush();
     }
 
