@@ -14,7 +14,7 @@ class Picture
     #[ORM\Column(type: "integer")]
     private ?int $id = null;
 
-    #[ORM\Column(length: 128)]
+    #[ORM\Column(length: 64)]
     private ?string $title = null;
 
     #[ORM\Column(length: 128)]
