@@ -69,6 +69,14 @@ class RestaurantController extends AbstractController
         return new JsonResponse($responseData, Response::HTTP_CREATED, ["Location" => $location], true);
     }
 
+    #[Route(methods: 'GET')]
+    public function index(): JsonResponse
+    {
+        $responseData = $this->serializer->serialize($this->repository->findAll(), 'json');
+
+        return new JsonResponse($responseData, Response::HTTP_OK, [], true);
+    }
+
     /** @OA\Get(
      *     path="/api/restaurant/{id}",
      *     summary="Afficher un restaurant par ID",
