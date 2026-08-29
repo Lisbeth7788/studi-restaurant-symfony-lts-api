@@ -27,7 +27,7 @@ class Picture
     private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'pictures')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Restaurant $restaurant = null;
 
     public function getId(): ?int

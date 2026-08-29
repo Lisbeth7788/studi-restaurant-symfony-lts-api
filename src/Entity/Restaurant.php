@@ -62,6 +62,16 @@ class Restaurant
         return $this;
     }
 
+    public function getTitle(): ?string
+    {
+        return $this->getName();
+    }
+
+    public function setTitle(string $title): static
+    {
+        return $this->setName($title);
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;

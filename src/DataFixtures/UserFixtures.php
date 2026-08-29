@@ -5,11 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Exception;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements FixtureGroupInterface
 {
     public function __construct(private UserPasswordHasherInterface $passwordHasher)
     {
@@ -31,5 +32,10 @@ class UserFixtures extends Fixture
             $manager->persist($user);
         }
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['indépendant', 'user'];
     }
 }
