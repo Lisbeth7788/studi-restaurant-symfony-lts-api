@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\{Picture, Restaurant};
+use App\Entity\Restaurant;
 use App\Service\Utils;
+use App\Entity\Picture;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -15,16 +16,14 @@ class PictureFixtures extends Fixture implements DependentFixtureInterface
     /** @throws Exception */
     public function load(ObjectManager $manager): void
     {
-        for ($i = 1; $i <= RestaurantFixtures::RESTAURANT_NB_TUPLES; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             /** @var Restaurant $restaurant */
-            $restaurant = $this->getReference(
-                RestaurantFixtures::RESTAURANT_REFERENCE . random_int(1, RestaurantFixtures::RESTAURANT_NB_TUPLES)
-            );
+            $restaurant = $this->getReference("restaurant" . random_int(1, 20), Restaurant::class);
             $title = "Article n°$i";
 
             $picture = (new Picture())
                 ->setTitle($title)
-                ->setSlug(Utils::slugify($title))
+                ->setSlug("slug")
                 ->setRestaurant($restaurant)
                 ->setCreatedAt(new DateTimeImmutable());
 
