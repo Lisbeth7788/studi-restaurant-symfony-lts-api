@@ -24,7 +24,7 @@ class UserTest extends TestCase
         $this->expectException(\TypeError::class);
 
         $user = new User();
-        $user->setFirstName([10]);
+        call_user_func([$user, 'setFirstName'], [10]);
     }
 
     public function provideFirstName(): \Generator
